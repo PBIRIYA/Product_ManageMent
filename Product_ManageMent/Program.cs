@@ -31,6 +31,9 @@ namespace Product_Management
             {
                 Console.WriteLine("ProductID:-" + list.ProductId + " " + "UserID:-" + list.UserId + " " + "Rating:-" + " " + list.Rating + " " + "Review:-" + list.Review + " " + "islike:-" + list.islike);
             }
+            Management management = new Management();
+            management.Toprecords(productReviewList);
+            //management.SelectRecords(productReviewList);
         }
     }
 }
