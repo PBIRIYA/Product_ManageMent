@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using System.Linq;
+using System.Text.RegularExpressions;
 namespace Product_Management
 {
     public class Management
@@ -25,5 +26,13 @@ namespace Product_Management
                 Console.WriteLine("ProductID:-" + list.ProductId + " " + "UserID:-" + list.UserId + " " + "Rating:-" + " " + list.Rating + " " + "Review:-" + list.Review + " " + "islike:-" + list.islike);
             }
         }
+            public void RetriveCount(List<ProductReview> ListProductReview)
+            {
+                var RetriveCount = ListProductReview.GroupBy(x => x.ProductId).Select(x => new { ProductId = x.Key, Count = x.Count() });
+                foreach (var list in RetriveCount)
+                {
+                    Console.WriteLine(list.ProductId + " -----" + list.Count);
+                }
+            }
+        }
     }
-}
