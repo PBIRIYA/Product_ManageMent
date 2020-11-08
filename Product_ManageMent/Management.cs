@@ -53,5 +53,18 @@ namespace Product_Management
                 Console.WriteLine("ProductID:-" + list.ProductId + " " + "UserID:-" + list.UserId + " " + "Rating:-" + " " + list.Rating + " " + "Review:-" + list.Review + " " + "islike:-" + list.islike);
             }
         }
+        public void AddToDataTableDemo(List<ProductReview> listProductReviews)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("ProductId");
+            table.Columns.Add("UserId");
+            table.Columns.Add("Rating");
+            table.Columns.Add("Review");
+            table.Columns.Add("IsLike");
+            foreach (ProductReview product in listProductReviews)
+            {
+                table.Rows.Add(product.ProductId, product.UserId, product.Rating, product.Review, product.islike);
+            }
+        }
     }
 }

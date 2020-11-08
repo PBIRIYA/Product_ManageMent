@@ -37,6 +37,7 @@ namespace Product_Management
             management.RetriveCount(productReviewList);
             management.RetrieveProductAndReview(productReviewList);
             management.SkipRecord(productReviewList);
+            management.AddToDataTableDemo(productReviewList);
         }
     }
 }
