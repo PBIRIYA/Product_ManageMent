@@ -26,13 +26,22 @@ namespace Product_Management
                 Console.WriteLine("ProductID:-" + list.ProductId + " " + "UserID:-" + list.UserId + " " + "Rating:-" + " " + list.Rating + " " + "Review:-" + list.Review + " " + "islike:-" + list.islike);
             }
         }
-            public void RetriveCount(List<ProductReview> ListProductReview)
+        public void RetriveCount(List<ProductReview> ListProductReview)
+        {
+            var RetriveCount = ListProductReview.GroupBy(x => x.ProductId).Select(x => new { ProductId = x.Key, Count = x.Count() });
+            foreach (var list in RetriveCount)
             {
-                var RetriveCount = ListProductReview.GroupBy(x => x.ProductId).Select(x => new { ProductId = x.Key, Count = x.Count() });
-                foreach (var list in RetriveCount)
-                {
-                    Console.WriteLine(list.ProductId + " -----" + list.Count);
-                }
+                Console.WriteLine(list.ProductId + " -----" + list.Count);
+            }
+        }
+        public void RetrieveProductAndReview(List<ProductReview> ListProductReview)
+        {
+            var RetrieveProductAndReview = from productReviews in ListProductReview
+                                           select new { productReviews.ProductId, productReviews.Review };
+            foreach (var list in RetrieveProductAndReview)
+            {
+                Console.WriteLine("ProductId" + " " + list.ProductId + " " + "Review" + " " + list.Review);
             }
         }
     }
+}
