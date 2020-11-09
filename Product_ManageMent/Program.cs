@@ -34,12 +34,13 @@ namespace Product_Management
             //}
             Management management = new Management();
             management.Toprecords(productReviewList);
-            //management.SelectRecords(productReviewList);
+            management.SelectRecords(productReviewList);
             management.RetriveCount(productReviewList);
             management.RetrieveProductAndReview(productReviewList);
             management.SkipRecord(productReviewList);
             management.AddToDataTableDemo(productReviewList);
             management.RetrieveIsLikeTrueProductsFromDataTable(table);
+            management.GetAverageRatingByProductId(table);
         }
     }
 }

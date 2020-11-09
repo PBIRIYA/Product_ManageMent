@@ -67,6 +67,17 @@ namespace Product_Management
             }
             return table;
         }
+
+        internal void GetAverageRatingByProductId(object table)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void RetrieveIsLikeTrueProductsFromDataTable(object table)
+        {
+            throw new NotImplementedException();
+        }
+
         public void RetrieveData(DataTable table)
         {
             foreach (DataRow row in table.Rows)
@@ -86,6 +97,16 @@ namespace Product_Management
             foreach (var row in productNames)
             {
                 Console.Write(row.Field<int>("ProductId") + "\t" + row.Field<int>("UserId") + "\t" + row.Field<double>("Rating") + "\t" + row.Field<string>("Review") + "\t" + row.Field<bool>("IsLike") + "\n");
+            }
+        }
+        public void GetAverageRatingByProductId(DataTable table)
+        {
+            var recordedData = from products in table.AsEnumerable()
+                               group products by products.Field<int>("ProductId") into g
+                               select new { ProductId = g.Key, Average = g.Average(a => a.Field<double>("Rating")) };
+            foreach (var row in recordedData)
+            {
+                Console.Write(row.ProductId + "\t" + row.Average + "\n");
             }
         }
     }
