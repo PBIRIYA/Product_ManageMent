@@ -68,6 +68,11 @@ namespace Product_Management
             return table;
         }
 
+        internal void RetrieveNiceReviewProductsFromDataTable(object table)
+        {
+            throw new NotImplementedException();
+        }
+
         internal void GetAverageRatingByProductId(object table)
         {
             throw new NotImplementedException();
@@ -107,6 +112,16 @@ namespace Product_Management
             foreach (var row in recordedData)
             {
                 Console.Write(row.ProductId + "\t" + row.Average + "\n");
+            }
+        }
+        public void RetrieveNiceReviewProductsFromDataTable(DataTable table)
+        {
+            var recordedData = from products in table.AsEnumerable()
+                               where products.Field<string>("Review").Contains("nice")
+                               select products;
+            foreach (var row in recordedData)
+            {
+                Console.Write(row.Field<int>("ProductId") + "\t" + row.Field<int>("UserId") + "\t" + row.Field<double>("Rating") + "\t" + row.Field<string>("Review") + "\t" + row.Field<bool>("IsLike") + "\n");
             }
         }
     }

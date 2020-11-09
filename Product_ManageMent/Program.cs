@@ -41,6 +41,7 @@ namespace Product_Management
             management.AddToDataTableDemo(productReviewList);
             management.RetrieveIsLikeTrueProductsFromDataTable(table);
             management.GetAverageRatingByProductId(table);
+            management.RetrieveNiceReviewProductsFromDataTable(table);
         }
     }
 }
