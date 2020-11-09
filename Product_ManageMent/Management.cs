@@ -68,6 +68,11 @@ namespace Product_Management
             return table;
         }
 
+        internal void OrderProductsByRating(int v, object table)
+        {
+            throw new NotImplementedException();
+        }
+
         internal void RetrieveNiceReviewProductsFromDataTable(object table)
         {
             throw new NotImplementedException();
@@ -120,6 +125,17 @@ namespace Product_Management
                                where products.Field<string>("Review").Contains("nice")
                                select products;
             foreach (var row in recordedData)
+            {
+                Console.Write(row.Field<int>("ProductId") + "\t" + row.Field<int>("UserId") + "\t" + row.Field<double>("Rating") + "\t" + row.Field<string>("Review") + "\t" + row.Field<bool>("IsLike") + "\n");
+            }
+        }
+        public void OrderProductsByRating(int userId, DataTable table)
+        {
+            var recodedData = from products in table.AsEnumerable()
+                              where products.Field<int>("UserId") == userId
+                              orderby products.Field<double>("Rating")
+                              select products;
+            foreach (var row in recodedData)
             {
                 Console.Write(row.Field<int>("ProductId") + "\t" + row.Field<int>("UserId") + "\t" + row.Field<double>("Rating") + "\t" + row.Field<string>("Review") + "\t" + row.Field<bool>("IsLike") + "\n");
             }

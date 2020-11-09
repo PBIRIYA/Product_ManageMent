@@ -42,6 +42,7 @@ namespace Product_Management
             management.RetrieveIsLikeTrueProductsFromDataTable(table);
             management.GetAverageRatingByProductId(table);
             management.RetrieveNiceReviewProductsFromDataTable(table);
+            management.OrderProductsByRating(1, table);
         }
     }
 }
