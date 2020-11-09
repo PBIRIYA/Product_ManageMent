@@ -53,7 +53,7 @@ namespace Product_Management
                 Console.WriteLine("ProductID:-" + list.ProductId + " " + "UserID:-" + list.UserId + " " + "Rating:-" + " " + list.Rating + " " + "Review:-" + list.Review + " " + "islike:-" + list.islike);
             }
         }
-        public void AddToDataTableDemo(List<ProductReview> listProductReviews)
+        public DataTable AddToDataTableDemo(List<ProductReview> listProductReviews)
         {
             DataTable table = new DataTable();
             table.Columns.Add("ProductId");
@@ -64,6 +64,28 @@ namespace Product_Management
             foreach (ProductReview product in listProductReviews)
             {
                 table.Rows.Add(product.ProductId, product.UserId, product.Rating, product.Review, product.islike);
+            }
+            return table;
+        }
+        public void RetrieveData(DataTable table)
+        {
+            foreach (DataRow row in table.Rows)
+            {
+                foreach (DataColumn column in table.Columns)
+                {
+                    Console.Write(row[column] + "\t");
+                }
+                Console.WriteLine();
+            }
+        }
+        public void RetrieveIsLikeTrueProductsFromDataTable(DataTable table)
+        {
+            var productNames = from products in table.AsEnumerable()
+                               where products.Field<bool>("IsLike") == true
+                               select products;
+            foreach (var row in productNames)
+            {
+                Console.Write(row.Field<int>("ProductId") + "\t" + row.Field<int>("UserId") + "\t" + row.Field<double>("Rating") + "\t" + row.Field<string>("Review") + "\t" + row.Field<bool>("IsLike") + "\n");
             }
         }
     }

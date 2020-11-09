@@ -1,10 +1,11 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Drawing;
+using System;
 using System.Collections.Generic;
 namespace Product_Management
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main(string[] args, object table)
         {
             Console.WriteLine("Hello World!");
             List<ProductReview> productReviewList = new List<ProductReview>()
@@ -38,6 +39,7 @@ namespace Product_Management
             management.RetrieveProductAndReview(productReviewList);
             management.SkipRecord(productReviewList);
             management.AddToDataTableDemo(productReviewList);
+            management.RetrieveIsLikeTrueProductsFromDataTable(table);
         }
     }
 }
